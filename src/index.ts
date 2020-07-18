@@ -83,11 +83,20 @@ class Logger {
       async (req: express.Request, res: express.Response) => {
         if (!req.query.key || !isString(req.query.key))
           return res.status(400).send('require key');
+        if (!req.query.format) return res.status(400).send('require format');
+        const format = req.query.format;
 
-        const data = this.loggerdb.findData(req.query.key);
-        return res.send(
-          (await data).map((o) => ({ data: o.data, timestamp: o.timestamp }))
-        );
+        const data = await this.loggerdb.findData(req.query.key);
+        const formated =
+          format === 'json'
+            ? data.map((o) => ({
+                data: o.data,
+                timestamp: o.timestamp,
+              }))
+            : format === 'csv'
+            ? data.map((o) => `${o.timestamp},${o.data}`).join('\n')
+            : 'unsupported';
+        return res.send(formated);
       }
     );
   }

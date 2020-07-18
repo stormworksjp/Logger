@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Japan Stormworks データロガーシステム</title>
+
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto,
+          Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+      }
+      html,
+      body {
+        font-size: 15px;
+      }
+
+      h1,
+      h2,
+      h3 {
+        font-weight: normal;
+        margin-bottom: 10px;
+      }
+      h2 {
+        border-bottom: 2px solid #ff8800;
+        padding-left: 10px;
+      }
+      h3 {
+        border-left: 10px solid #ff8800;
+        padding-left: 7px;
+      }
+
+      ol,
+      ul {
+        padding-left: 20px;
+        padding-bottom: 10px;
+      }
+      ul li::before {
+        content: '・';
+      }
+      ul li {
+        list-style: none;
+      }
+
+      a:link,
+      a:visited {
+        color: #8f4800;
+        text-decoration: solid 1px #8f4800;
+      }
+      code {
+        display: inline-block;
+        margin: 0 3px;
+        padding: 2px;
+        background-color: #444444;
+        color: #ffffff;
+
+        font-family: 'Consolas';
+        border-radius: 2px;
+      }
+
+      .section {
+        padding: 10px;
+        background-color: #ff8800;
+        color: #ffffff;
+      }
+      .container {
+        padding: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="section">
+      <h1>Stormworks Datalogger System</h1>
+    </div>
+    <div class="container">
+      <h2>使い方</h2>
+      <div class="container">
+        <h3>データロガーへの記録</h3>
+        <ol>
+          <li>任意の文字列を用意します。(e.g. : player-20200718-test1)</li>
+          <li>
+            Stormworks
+            LuaブロックでHTTPリクエスト関数を使用し、<code>http://logger.stormworks.jp/record?key=<任意の文字列>&data=<データ></code>にアクセスします。
+          </li>
+        </ol>
+
+        <h3>データ読み取り</h3>
+        <ol>
+          <li>
+            ブラウザで<code
+              >http://logger.stormworks.jp/data?key=<任意の文字列>&format=<フォーマット識別子></code
+            >
+            へアクセスします。
+            <ul>
+              <li>
+                対応フォーマット
+                <ul>
+                  <li>csv (<code>UNIXタイムスタンプ,データ</code>形式)</li>
+                  <li>json</li>
+                </ul>
+              </li>
+            </ul>
+          </li>
+        </ol>
+      </div>
+
+      <h2>備考</h2>
+      <div class="container">
+        <ul>
+          <li>
+            このサービスは、<a href="https://neiro.work" target="_blank"
+              >ねいろわーく</a
+            >が開発･運用しています。
+          </li>
+          <li>
+            格納されたデータは、記録されてから1日で取得できなくなります。
+          </li>
+          <li>
+            予告なくサービスを終了する可能性があります。
+          </li>
+          <li>
+            リポジトリ :
+            <a href="https://github.com/stormworksjp/Logger" target="_blank"
+              >stormworksjp/Logger</a
+            >
+          </li>
+        </ul>
+      </div>
+    </div>
+  </body>
+</html>

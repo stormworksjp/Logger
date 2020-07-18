@@ -1,5 +1,7 @@
 require('dotenv').config();
 
+import path from 'path';
+
 import express from 'express';
 import * as loggerLibs from './libs/logger-libs';
 import { isString } from 'util';
@@ -46,7 +48,7 @@ class Logger {
 
   private _indexRoute(): void {
     this.app.get('/', (req: express.Request, res: express.Response) => {
-      return res.send('hello world!');
+      return res.sendFile(path.resolve('assets/index.html'));
     });
   }
 

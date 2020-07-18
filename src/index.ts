@@ -19,7 +19,7 @@ class Logger {
   }
 
   start(): void {
-    this._logMiddleware();
+    // this._logMiddleware();
 
     this._indexRoute();
     this._generateKeyRoute();

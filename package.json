@@ -1,14 +1,14 @@
 {
   "name": "Logger",
-  "version": "1.0.0",
-  "main": "index.js",
+  "version": "v0.0.1",
+  "main": "src/index.ts",
   "author": "Neiro Somemiya <smmy@neiro.work>",
   "license": "AGPL-3.0-or-later",
   "scripts": {
     "tsc-init": "tsc --init",
     "watch": "tsc --watch",
     "build": "tsc",
-    "dev": "node .dist/"
+    "start": "node .dist/"
   },
   "dependencies": {
     "@types/express": "^4.17.7",

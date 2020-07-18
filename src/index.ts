@@ -43,6 +43,7 @@ class Logger {
       }
     );
   }
+
   private _indexRoute(): void {
     this.app.get('/', (req: express.Request, res: express.Response) => {
       return res.send('hello world!');

@@ -42,7 +42,7 @@ export class DB {
   public async findData(key: string): Promise<any[]> {
     return this.db
       .collection('data')
-      .find({ key })
+      .find({ key, timestamp: { $gte: moment().subtract(1, 'd').unix() } })
       .sort({ timestamp: 1 })
       .toArray()
       .catch((err) => {

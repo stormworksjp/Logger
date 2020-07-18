@@ -58,6 +58,7 @@ class Logger {
     this.app.listen(this.port, () => console.log('ready'));
 
     this._readyHandler();
+    this._errorHandler();
   }
 
   private _logMiddleware(): void {
@@ -81,6 +82,10 @@ class Logger {
     });
   }
 
+  private _errorHandler(): void {
+    this.bot.on('error', (err) => console.error(err));
+  }
+
   private _fetchChannel(): void {
     const channel = this.bot.channels.cache.get(this.channelId);
     if (!channel) throw new Error('チャンネルIDが無効です');
@@ -100,8 +105,9 @@ class Logger {
     const deltaCount = allDatas - this.previousCount;
     this.previousCount = allDatas;
 
+    const mention = deltaCount >= 60 * 10 ? '@everyone ' : '';
     this.channel.send({
-      content: '現在のロガーシステムの状態を通知します。',
+      content: `${mention}現在のロガーシステムの状態を通知します。`,
       embed: {
         title: 'ロガーシステムステータス',
         fields: [
@@ -115,18 +121,18 @@ class Logger {
             value: allDatas,
             inline: true,
           },
-          { name: '前回からの増加量', value: deltaCount, inline: true },
           { name: '有効なデータ', value: await activeDatas, inline: true },
+          { name: '前回からの増加量', value: deltaCount, inline: true },
         ],
         color: parseInt(
           deltaCount >= 60 * 10
-            ? '0xff0000'
+            ? '0xeb4034'
             : deltaCount >= 60 * 5
             ? '0xff8800'
             : deltaCount >= 60 * 2.5
-            ? '0xff00ff'
+            ? '0xebd034'
             : deltaCount >= 60
-            ? '0x00ffff'
+            ? '0x34c427'
             : '0x222222'
         ),
       },

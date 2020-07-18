@@ -49,4 +49,9 @@ export class DB {
         throw err;
       });
   }
+
+  public async countData(query: any): Promise<number> {
+    const datas = await this.db.collection('data').find(query).toArray();
+    return datas.length;
+  }
 }

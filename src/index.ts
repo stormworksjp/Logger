@@ -140,7 +140,7 @@ class Logger {
   }
 
   private _cronSchedule(): void {
-    cron.schedule('* */10 * * *', () => this._reportDatabase());
+    cron.schedule('* */1 * * *', () => this._reportDatabase());
   }
 
   private _indexRoute(): void {
